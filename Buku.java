@@ -1,4 +1,4 @@
-package Modul2;
+package Modul3;
 
 import java.io.*;
 
@@ -50,18 +50,15 @@ public class Buku {
         return (poin / 4.0) * 100;
     }
 
-    // Baca file (semua atribut)
+    // Baca file
     public void bacaFile(String pathFile) {
         try (BufferedReader br = new BufferedReader(new FileReader(pathFile))) {
             String line = br.readLine();
             if (line != null) {
                 String[] data = line.split(";");
-                if (data.length >= 5) {
+                if (data.length >= 2) {
                     judul = data[0].trim();
                     penulis = data[1].trim();
-                    penerbit = data[2].trim();
-                    tahunTerbit = Integer.parseInt(data[3].trim());
-                    sinopsis = data[4].trim();
                 }
             }
         } catch (IOException e) {
@@ -69,10 +66,10 @@ public class Buku {
         }
     }
 
-    // Simpan file (semua atribut)
+    // Simpan file
     public void simpanFile(String namaFile) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(namaFile))) {
-            bw.write(judul + ";" + penulis + ";" + penerbit + ";" + tahunTerbit + ";" + sinopsis);
+            bw.write(judul + ";" + penulis);
         } catch (IOException e) {
             System.out.println("Error menyimpan file: " + e.getMessage());
         }
